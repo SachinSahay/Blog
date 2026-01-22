@@ -1,0 +1,426 @@
+@import "tailwindcss";
+
+@theme {
+  /* Premium Gradient Theme - Navy/Indigo/Purple for Fintech */
+  --color-background: 240 20% 99%;
+  --color-foreground: 230 35% 7%;
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 230 35% 7%;
+  --color-popover: 0 0% 100%;
+  --color-popover-foreground: 230 35% 7%;
+
+  /* Primary: Deep Indigo */
+  --color-primary: 239 84% 67%;
+  --color-primary-foreground: 0 0% 100%;
+
+  /* Secondary: Soft Purple */
+  --color-secondary: 250 100% 97%;
+  --color-secondary-foreground: 239 84% 67%;
+
+  /* Muted: Light Gray-Blue */
+  --color-muted: 240 20% 96%;
+  --color-muted-foreground: 240 10% 45%;
+
+  /* Accent: Vibrant Purple */
+  --color-accent: 270 95% 75%;
+  --color-accent-foreground: 0 0% 100%;
+
+  --color-destructive: 0 84.2% 60.2%;
+  --color-destructive-foreground: 0 0% 100%;
+  --color-border: 240 15% 90%;
+  --color-input: 240 15% 92%;
+  --color-ring: 239 84% 67%;
+  --radius: 0.75rem;
+}
+
+/* Base Styles */
+* {
+  border-color: hsl(var(--color-border));
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 50%, #f0e7ff 100%);
+  color: hsl(var(--color-foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--color-muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--color-primary) / 0.5);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--color-primary));
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Card Hover Effects */
+.blog-card {
+  animation: fadeIn 0.3s ease-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.2),
+    0 10px 20px -5px rgba(139, 92, 246, 0.15);
+}
+
+/* Header Gradient Animation */
+.gradient-text {
+  background: linear-gradient(90deg,
+      #6366f1 0%,
+      #8b5cf6 25%,
+      #a855f7 50%,
+      #7c3aed 75%,
+      #6366f1 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+}
+
+/* Badge Animations */
+.category-badge {
+  transition: all 0.2s ease;
+  animation: slideInLeft 0.4s ease-out;
+}
+
+.category-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Hover Effects */
+button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Image Loading Effect */
+img {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* Form Input Focus Effects */
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px hsl(var(--color-primary) / 0.1);
+  border-color: hsl(var(--color-primary));
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+/* Loading Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg,
+      hsl(var(--color-muted)) 0%,
+      hsl(var(--color-muted) / 0.8) 50%,
+      hsl(var(--color-muted)) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Dialog/Modal Animations */
+[data-state="open"] {
+  animation: fadeIn 0.2s ease-out;
+}
+
+[data-state="closed"] {
+  animation: fadeOut 0.2s ease-out;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Content Fade In */
+.content-section {
+  animation: slideInRight 0.5s ease-out;
+}
+
+/* Glassmorphism Effect for Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* Hover Glow Effect */
+.glow-on-hover {
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.6),
+    0 0 40px rgba(102, 126, 234, 0.4),
+    0 0 60px rgba(102, 126, 234, 0.2);
+}
+
+/* Text Selection */
+::selection {
+  background: hsl(var(--color-primary) / 0.3);
+  color: hsl(var(--color-foreground));
+}
+
+/* Focus Visible for Accessibility */
+*:focus-visible {
+  outline: 2px solid hsl(var(--color-primary));
+  outline-offset: 2px;
+}
+
+/* Smooth Transitions for All Interactive Elements */
+a,
+button,
+input,
+textarea,
+select {
+  transition: all 0.2s ease;
+}
+
+/* Error State Animation */
+.error-shake {
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Success Checkmark Animation */
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Floating Animation for Icons */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .blog-card {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
+
+/* Dark Mode Support (if needed) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+}
+
+/* Ensure proper scrolling for blog detail */
+.blog-detail-container {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Force scrollbar to always show for better UX */
+.blog-detail-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.blog-detail-container::-webkit-scrollbar-track {
+  background: hsl(var(--color-muted));
+  border-radius: 5px;
+}
+
+.blog-detail-container::-webkit-scrollbar-thumb {
+  background: hsl(var(--color-primary) / 0.6);
+  border-radius: 5px;
+}
+
+.blog-detail-container::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--color-primary));
+}
